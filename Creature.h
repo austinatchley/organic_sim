@@ -1,10 +1,11 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 
 class Creature {
 public:
-  int m_placeholder;
-
   void step();
+
+  std::string printInfo() const;
 };

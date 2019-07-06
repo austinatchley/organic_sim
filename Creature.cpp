@@ -1,5 +1,7 @@
 #include "Creature.h"
 
-void Creature::step() {
-  std::cout << "Creature step" << std::endl;
+void Creature::step() {}
+
+std::string Creature::printInfo() const {
+  return "";
 }
