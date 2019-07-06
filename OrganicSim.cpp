@@ -2,6 +2,6 @@
 
 void OrganicSim::step() {
   for (Creature c : m_creatures) {
-    //c.step();
+    c.step();
   }
 }
