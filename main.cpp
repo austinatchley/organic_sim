@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include <unistd.h>
 
 #include "Constants.h"
 #include "OrganicSim.h"
@@ -32,10 +34,11 @@ std::vector<Creature> buildCreatures() {
   return std::move(creatures);
 }
 
-void printInfo(const Env& env, const std::vector<Creature>& creatures, const OrganicSim& sim, int step) {
+void printInfo(const Env& env, const std::vector<Creature>& creatures, const OrganicSim& sim, int step, std::chrono::duration<double> dt) {
   std::cout << "Step " << step << std::endl;
 
   if (debug) {
+    std::cout << "Seconds elapsed: " << dt.count() << std::endl;
     std::cout << "Creatures remaining: " << creatures.size() << std::endl;
 
     for (int i = 0; i < creatures.size(); ++i) {
@@ -63,8 +66,19 @@ int main(int argc, char** argv) {
   OrganicSim sim = OrganicSim(env, creatures);
 
   int step = 0;
+  auto lastTime = std::chrono::system_clock::now();
+
   while(1) {
-    printInfo(env, creatures, sim, ++step);
+    auto curTime = std::chrono::system_clock::now();
+    auto dt = lastTime - curTime;
+
+    if (dt.count() < Constants::MAX_STEP_TIME) {
+      usleep(Constants::MAX_STEP_TIME);
+    }
+    lastTime = curTime;
+
+    printInfo(env, creatures, sim, ++step, dt);
     sim.step();
+
   }
 }

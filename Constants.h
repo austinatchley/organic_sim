@@ -10,6 +10,8 @@ namespace Constants {
   const static int COLOR =  2;
   const static int SPEED =  3;
 
+  const static double MAX_STEP_TIME =  1000.0;
+
   enum class CMD_OPTION {
     Noop,
     Debug,
