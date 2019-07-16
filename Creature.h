@@ -5,10 +5,12 @@
 
 template <class T = int>
 class Creature {
-private:
+protected:
     T m_data;
 
 public:
+  Creature(T data) : m_data(data) {}
+
   virtual void step() = 0;
 
   virtual std::string printInfo() const = 0;

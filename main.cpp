@@ -2,6 +2,7 @@
 #include <vector>
 #include <chrono>
 #include <unistd.h>
+#include <cstdlib>
 
 #include "Constants.h"
 #include "OrganicSim.h"
@@ -17,6 +18,8 @@ int main(int argc, char** argv) {
   if (argc > 1) {
     handleCmdArgs(argc, argv);
   }
+
+  srand(static_cast<unsigned>(time(nullptr)));
 
   std::vector<int> targets;
   targets.insert(targets.begin() + Constants::SIZE, 100);
@@ -65,7 +68,8 @@ std::vector<CreaturePtr> buildCreatures() {
   std::vector<CreaturePtr> creatures;
 
   for (int i = 0; i < Constants::NUM_CREATURES; ++i) {
-    creatures.push_back(new BasicCreature());
+    int randomInt = rand(); // TODO: Make this better
+    creatures.push_back(new BasicCreature(randomInt));
   }
 
   return std::move(creatures);
