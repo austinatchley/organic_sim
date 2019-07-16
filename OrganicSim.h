@@ -8,11 +8,11 @@
 class OrganicSim {
 private:
   Env m_env;
-  std::vector<Creature> m_creatures;
+  std::vector<CreaturePtr> m_creatures;
 
 
 public:
-  OrganicSim(const Env& env, const std::vector<Creature>& creatures) : 
+  OrganicSim(const Env& env, const std::vector<CreaturePtr>& creatures) : 
     m_env(env), m_creatures(creatures) {}
 
   void step();

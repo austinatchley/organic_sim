@@ -3,9 +3,15 @@
 #include <iostream>
 #include <string>
 
+template <class T = int>
 class Creature {
-public:
-  void step();
+private:
+    T m_data;
 
-  std::string printInfo() const;
+public:
+  virtual void step() = 0;
+
+  virtual std::string printInfo() const = 0;
 };
+
+using CreaturePtr = Creature<>*;

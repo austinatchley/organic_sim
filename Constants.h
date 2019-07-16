@@ -10,7 +10,8 @@ namespace Constants {
   const static int COLOR =  2;
   const static int SPEED =  3;
 
-  const static double MAX_STEP_TIME =  1000.0;
+  const static double MAX_FPS = 60.0;
+  const static double MAX_STEP_USEC =  100000.0 / MAX_FPS;
 
   enum class CMD_OPTION {
     Noop,
@@ -26,8 +27,6 @@ namespace Constants {
     if (s.empty()) {
       return CMD_OPTION::Noop;
     }
-
-    std::cout << "CONVERTING " << s << std::endl;
 
     if (stringToCmdOption.find(s) != stringToCmdOption.end()) {
       return stringToCmdOption.at(s);
