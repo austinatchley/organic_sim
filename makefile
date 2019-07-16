@@ -1,9 +1,9 @@
 default:
-	g++ -O3 *.cpp -o OrganicSim
+	g++ -std=c++17 -O3 *.cpp -o OrganicSim
 	./OrganicSim
 
 debug:
-	g++ -Og *.cpp -o OrganicSim
+	g++ -std=c++17 -Og *.cpp -o OrganicSim
 	./OrganicSim -d
 
 clean:
