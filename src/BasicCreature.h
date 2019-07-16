@@ -4,9 +4,9 @@
 
 class BasicCreature : public Creature<int> {
 public:
-    BasicCreature(int data) : Creature<int>(data) {}
+  BasicCreature(int data) : Creature<int>(data) {}
 
-    void step() override;
+  void step() override;
 
-    std::string printInfo() const override;
+  std::string printInfo() const override;
 };

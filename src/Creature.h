@@ -6,7 +6,7 @@
 template <class T = int>
 class Creature {
 protected:
-    T m_data;
+  T m_data;
 
 public:
   Creature(T data) : m_data(data) {}

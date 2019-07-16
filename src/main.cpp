@@ -1,18 +1,19 @@
-#include <iostream>
-#include <vector>
 #include <chrono>
-#include <unistd.h>
 #include <cstdlib>
+#include <iostream>
+#include <unistd.h>
+#include <vector>
 
+#include "BasicCreature.h"
 #include "Constants.h"
 #include "OrganicSim.h"
-#include "BasicCreature.h"
 
 static bool debug = false;
 
 void handleCmdArgs(int argc, char** argv);
 std::vector<CreaturePtr> buildCreatures();
-void printInfo(const Env& env, const std::vector<CreaturePtr>& creatures, const OrganicSim& sim, int step, double dt);
+void printInfo(const Env& env, const std::vector<CreaturePtr>& creatures, const OrganicSim& sim,
+               int step, double dt);
 
 int main(int argc, char** argv) {
   if (argc > 1) {
@@ -34,12 +35,12 @@ int main(int argc, char** argv) {
   int step = 0;
   auto lastTime = std::chrono::system_clock::now();
 
-  while(1) {
+  while (1) {
     auto time = std::chrono::system_clock::now();
     auto dt = time - lastTime;
 
     if (dt.count() < Constants::MAX_STEP_USEC) {
-        continue; // cap the rate at which we update
+      continue; // cap the rate at which we update
     }
     lastTime = time;
 
@@ -49,17 +50,17 @@ int main(int argc, char** argv) {
 }
 
 void handleCmdArgs(int argc, char** argv) {
-  for(int i = 1; i < argc; ++i) {
+  for (int i = 1; i < argc; ++i) {
     std::string arg = std::string(argv[i]);
 
     switch (Constants::convertStringToCmdOption(arg)) {
-      case Constants::CMD_OPTION::Debug:
-        std::cout << "Debug mode enabled" << std::endl;
-        debug = true;
-        break;
+    case Constants::CMD_OPTION::Debug:
+      std::cout << "Debug mode enabled" << std::endl;
+      debug = true;
+      break;
 
-      default:
-        std::cout << "Unknown argument: " << arg << std::endl;
+    default:
+      std::cout << "Unknown argument: " << arg << std::endl;
     }
   }
 }
@@ -75,7 +76,8 @@ std::vector<CreaturePtr> buildCreatures() {
   return std::move(creatures);
 }
 
-void printInfo(const Env& env, const std::vector<CreaturePtr>& creatures, const OrganicSim& sim, int step, double dt) {
+void printInfo(const Env& env, const std::vector<CreaturePtr>& creatures, const OrganicSim& sim,
+               int step, double dt) {
   std::cout << "Step " << step << std::endl;
 
   if (debug) {
